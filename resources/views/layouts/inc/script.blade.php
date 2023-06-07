@@ -8,9 +8,6 @@
     <script src="{{ asset('admin') }}/vendor/js/menu.js"></script>
     <!-- endbuild -->
 
-    <!-- Vendors JS -->
-    <script src="{{ asset('admin') }}/vendor/libs/apex-charts/apexcharts.js"></script>
-
     <!-- Main JS -->
     <script src="{{ asset('admin') }}/js/main.js"></script>
 
