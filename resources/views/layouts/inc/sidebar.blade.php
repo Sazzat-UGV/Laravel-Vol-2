@@ -1,6 +1,6 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-      <a href="index.html" class="app-brand-link">
+      <a href="{{ route('home') }}" class="app-brand-link">
         <span class="app-brand-logo demo">
           <svg
             width="25"
@@ -69,7 +69,7 @@
     <ul class="menu-inner py-1">
       <!-- Dashboard -->
       <li class="menu-item active">
-        <a href="index.html" class="menu-link">
+        <a href="{{ route('home') }}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-home-circle"></i>
           <div data-i18n="Analytics">Dashboard</div>
         </a>
@@ -78,27 +78,22 @@
 
 
       <li class="menu-header small text-uppercase">
-        <span class="menu-header-text">Pages</span>
+        <span class="menu-header-text">System Setting</span>
       </li>
       <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-dock-top"></i>
-          <div data-i18n="Account Settings">Account Settings</div>
+          <div data-i18n="Account Settings">Module Settings</div>
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
-            <a href="pages-account-settings-account.html" class="menu-link">
-              <div data-i18n="Account">Account</div>
+            <a href="{{ route('module.index') }}" class="menu-link">
+              <div data-i18n="Account">List</div>
             </a>
           </li>
           <li class="menu-item">
-            <a href="pages-account-settings-notifications.html" class="menu-link">
-              <div data-i18n="Notifications">Notifications</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="pages-account-settings-connections.html" class="menu-link">
-              <div data-i18n="Connections">Connections</div>
+            <a href="{{ route('module.create') }}" class="menu-link">
+              <div data-i18n="Notifications">Create</div>
             </a>
           </li>
         </ul>
