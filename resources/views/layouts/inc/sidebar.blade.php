@@ -98,5 +98,23 @@
           </li>
         </ul>
       </li>
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
+          <div data-i18n="Account Settings">Permission Settings</div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="{{ route('permission.index') }}" class="menu-link">
+              <div data-i18n="Account">List</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{ route('permission.create') }}" class="menu-link">
+              <div data-i18n="Notifications">Create</div>
+            </a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </aside>

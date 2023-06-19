@@ -23,7 +23,7 @@ Module Edit
                         <input type="text" name="module_name" value="{{ $module->module_name }}" class="form-control" id="basic-default-fullname" placeholder="enter module name">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-warning">Update</button>
                 </form>
             </div>
         </div>

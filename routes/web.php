@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\backend\ModuleController;
+use App\Http\Controllers\backend\PermissionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -32,4 +33,5 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
 
     //Resource Routes
     Route::resource('/module',ModuleController::class);
+    Route::resource('/permission',PermissionController::class);
 });
