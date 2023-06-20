@@ -19,15 +19,30 @@
                         @method('PUT')
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Role Name</label>
-                            <input type="text" name="role_name" value="{{ $role->role_name }}" class="form-control" id="basic-default-fullname" placeholder="enter module name">
+                            <input type="text" name="role_name" value="{{ $role->role_name }}" class="form-control @error('role_name')
+                            is-invalid
+                            @enderror" id="basic-default-fullname" placeholder="enter module name">
+                            @error('role_name')
+                              <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                              @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-rolenote">Role Note</label>
-                            <input type="text" name="role_note" value="{{ $role->role_note }}" class="form-control" id="basic-default-fullname" placeholder="enter role note">
+                            <input type="text" name="role_note" value="{{ $role->role_note }}" class="form-control @error('role_note')
+                            is-invalid
+                            @enderror" id="basic-default-fullname" placeholder="enter role note">
+                            @error('role_note')
+                              <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                              @enderror
                         </div>
 
-                           <div class="mt-4 mb-2">
-                            <strong>Manage Permissions for Role</strong>
+                        <div class="mt-4 mb-2">
+                            <strong class="@error('permissions')
+                            is-invalid
+                            @enderror">Manage Permissions for Role</strong>
+                            @error('permissions')
+                              <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                              @enderror
                            </div>
 
                            <div class="form-check mb-3">
@@ -62,7 +77,7 @@
                             </div>
                             @endforeach
                           </div>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-warning">Update</button>
                     </form>
                 </div>
             </div>

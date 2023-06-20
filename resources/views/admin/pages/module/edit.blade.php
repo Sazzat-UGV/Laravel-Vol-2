@@ -20,7 +20,12 @@ Module Edit
                     @method('PUT')
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-fullname">Module Name</label>
-                        <input type="text" name="module_name" value="{{ $module->module_name }}" class="form-control" id="basic-default-fullname" placeholder="enter module name">
+                        <input type="text" name="module_name" value="{{ $module->module_name }}" class="form-control @error('module_name')
+                        is-invalid
+                        @enderror" id="basic-default-fullname" placeholder="enter module name">
+                        @error('module_name')
+                          <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                          @enderror
                     </div>
 
                     <button type="submit" class="btn btn-warning">Update</button>

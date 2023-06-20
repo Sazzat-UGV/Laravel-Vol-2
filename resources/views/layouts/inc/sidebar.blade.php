@@ -98,6 +98,8 @@
           </li>
         </ul>
       </li>
+      @can('index-permission')
+
       <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
@@ -116,6 +118,8 @@
           </li>
         </ul>
       </li>
+      @endcan
+      @can('index-role')
       <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bxs-user-check"></i>
@@ -134,5 +138,6 @@
           </li>
         </ul>
       </li>
+      @endcan
     </ul>
   </aside>
