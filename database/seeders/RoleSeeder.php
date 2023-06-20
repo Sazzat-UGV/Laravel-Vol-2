@@ -26,13 +26,19 @@ class RoleSeeder extends Seeder
         ])->permissions()->sync($adminPermission->pluck('id'));
 
 
-
-
         //Create a User role
         Role::updateOrCreate([
             'role_name'=>'User',
             'role_slug'=>'user',
             'role_note'=>'user has limited permissions',
+            'is_deleteable'=>true,
+        ]);
+
+        //Create a Manager role
+        Role::updateOrCreate([
+            'role_name'=>'Manager',
+            'role_slug'=>'manager',
+            'role_note'=>'manager has limited permissions',
             'is_deleteable'=>true,
         ]);
     }
