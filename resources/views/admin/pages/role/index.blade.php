@@ -48,16 +48,25 @@
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
+                                                @can('edit-role')
                                                 <a class="dropdown-item" href="{{ route('role.edit', $role->id) }}"><i
-                                                        class="bx bx-edit-alt me-1"></i>
-                                                    Edit</a>
-                                                <form action="{{ route('role.destroy', $role->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="dropdown-item show_confirm" type="submit"><i
-                                                            class="bx bx-trash me-1"></i>
-                                                        Delete</button>
-                                                </form>
+                                                    class="bx bx-edit-alt me-1"></i>
+                                                Edit</a>
+                                                @endcan
+
+
+                                                    @if ($role->is_deleteable && Auth::user()->haspermission('delete-role'))
+                                                    <form action="{{ route('role.destroy', $role->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="dropdown-item show_confirm" type="submit"><i
+                                                                class="bx bx-trash me-1"></i>
+                                                            Delete</button>
+                                                    </form>
+                                                    @endif
+
+
+
                                             </div>
                                         </div>
                                     </td>
