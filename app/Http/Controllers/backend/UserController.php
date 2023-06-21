@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with(['role:id,role_name,role_slug'])->select('id', 'role_id', 'name', 'email', 'updated_at')->latest('id')->get();
+        $users = User::with(['role:id,role_name,role_slug'])->select('id','role_id','is_active','name', 'email', 'updated_at')->latest('id')->get();
         return view('admin.pages.users.index', compact('users'));
     }
 
@@ -95,5 +95,20 @@ class UserController extends Controller
 
         Toastr::success('User Deleted Successfully');
         return redirect()->route('user.index');
+    }
+
+
+    public function checkActive($user_id){
+        $user=User::find($user_id);
+        if($user->is_active == 1){
+            $user->is_active=0;
+        }else{
+            $user->is_active=1;
+        }
+        $user->update();
+        return response()->json([
+            'type' =>'success',
+            'message' =>'Status Updated',
+        ]);
     }
 }

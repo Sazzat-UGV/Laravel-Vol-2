@@ -4,8 +4,7 @@
 @endsection
 
 @push('admin_style')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 @endpush
 @section('content')
     <div class="row">
@@ -24,17 +23,26 @@
                                 <th>User Role</th>
                                 <th>User Name</th>
                                 <th>User Email</th>
+                                <th>User Active</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
                             @forelse ($users as $index=>$user)
                                 <tr>
-                                    <td><strong>{{$index+1 }}</strong></td>
+                                    <td><strong>{{ $index + 1 }}</strong></td>
                                     <td>{{ $user->updated_at->format('d-M-Y') }}</td>
                                     <td>{{ $user->role->role_name }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
+                                    <td>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input toggle-class" type="checkbox" role="switch"
+                                                data-id="{{ $user->id }}" id="user-{{ $user->id }}"
+                                                {{ $user->is_active ? 'checked' : '' }}>
+
+                                        </div>
+                                    </td>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -57,9 +65,9 @@
                                     </td>
                                 </tr>
                             @empty
-                            <tr>
-                                <td>No user found yet!</td>
-                            </tr>
+                                <tr>
+                                    <td>No user found yet!</td>
+                                </tr>
                             @endforelse
                         </tbody>
                     </table>
@@ -70,10 +78,9 @@
 @endsection
 
 @push('admin_script')
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function() {
-
             $('#myTable').DataTable();
 
             $('.show_confirm').click(function(event) {
@@ -98,6 +105,31 @@
                         )
                     }
                 })
+            });
+
+            $('.toggle-class').change(function() {
+                var is_active = $(this).prop('checked') == true ? 1 : 0;
+                var item_id = $(this).data('id');
+                //console.log(is_active, item_id);//for debug purpos
+
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: '/admin/check/user/is_active/' + item_id,
+                    success: function(response) {
+                        console.log(response);
+                        Swal.fire(
+                            'Status Updated!',
+                            'Click ok button!',
+                            'success'
+                        )
+                    },
+                    errro: function(err) {
+                        if (err) {
+                            console.log(err);
+                        }
+                    }
+                });
             });
         });
     </script>
