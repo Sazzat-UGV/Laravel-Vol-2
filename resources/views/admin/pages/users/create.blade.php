@@ -11,7 +11,7 @@
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">User Create Form</h5>
-                    <small class="text-muted float-end"><a href="{{ route('user.index') }}" class="btn btn-secondary"><i class='bx bx-left-arrow-alt'></i> Back to Permission List</a></small>
+                    <small class="text-muted float-end"><a href="{{ route('user.index') }}" class="btn btn-secondary"><i class='bx bx-left-arrow-alt'></i> Back to User List</a></small>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('user.store') }}" method="POST">

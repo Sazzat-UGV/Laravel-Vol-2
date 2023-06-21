@@ -11,7 +11,7 @@
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Role Create Form</h5>
-                    <small class="text-muted float-end"><a href="{{ route('role.index') }}" class="btn btn-secondary"><i class='bx bx-left-arrow-alt'></i> Back to Module List</a></small>
+                    <small class="text-muted float-end"><a href="{{ route('role.index') }}" class="btn btn-secondary"><i class='bx bx-left-arrow-alt'></i> Back to Role List</a></small>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('role.store') }}" method="POST">
