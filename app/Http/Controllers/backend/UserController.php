@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with(['role:id,role_name,role_slug'])->select('id','role_id','is_active','name', 'email', 'updated_at')->latest('id')->get();
+        $users = User::with(['role:id,role_name,role_slug'])->select('id','role_id','is_active','user_image','name', 'email', 'updated_at')->latest('id')->get();
         return view('admin.pages.users.index', compact('users'));
     }
 
@@ -91,6 +91,11 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         $user=User::find($id);
+        if($user->user_image !=null){
+            $photo_location='public/uploads/profile_images/';
+            $old_photo_path=$photo_location.$user->user_image;
+            unlink(base_path($old_photo_path));
+        }
         $user->delete();
 
         Toastr::success('User Deleted Successfully');
