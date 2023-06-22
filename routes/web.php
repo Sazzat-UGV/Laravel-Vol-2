@@ -47,4 +47,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     //Profile Management Route
     Route::get('update-profile',[ProfileController::class,'getUpdateProfile'])->name('getupdate.profile');
     Route::post('update-profile',[ProfileController::class,'UpdateProfile'])->name('postupdate.profile');
+
+    Route::get('update-password',[ProfileController::class,'getUpdatePassword'])->name('getupdate.Password');
+    Route::post('update-password',[ProfileController::class,'UpdatePassword'])->name('postupdate.Password');
 });
