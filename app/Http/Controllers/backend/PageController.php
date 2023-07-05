@@ -22,7 +22,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.page-builder.create');
     }
 
     /**

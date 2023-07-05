@@ -1,61 +1,141 @@
 @extends('layouts.master')
 @section('title')
-    User Create
+    Page Create
 @endsection
-
 @push('admin_style')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css"
+        integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endpush
 @section('content')
     <div class="row">
         <div class="col">
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">User Create Form</h5>
-                    <small class="text-muted float-end"><a href="{{ route('user.index') }}" class="btn btn-secondary"><i class='bx bx-left-arrow-alt'></i> Back to User List</a></small>
+                    <h5 class="mb-0">Page Create Form</h5>
+                    <small class="text-muted float-end"><a href="{{ route('page.index') }}" class="btn btn-secondary"><i
+                                class='bx bx-left-arrow-alt'></i> Back to Page List</a></small>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('user.store') }}" method="POST">
+                    <form action="{{ route('page.store') }}" method="POST">
                         @csrf
-                        <div class="mb-3">
-                            <label for="" class="form-label">Role Selection</label>
-                            <select id="defaultSelect" name="role_id" class="form-select @error('role_id')
-                            is-invalid
-                            @enderror">
-                            <option value="">Select Role</option>
-                                @foreach ($roles as $role)
-                                <option value="{{ $role->id }}">{{ $role->role_name }}</option>
-                                @endforeach
-                              </select>
-                              @error('role_id')
-                              <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                              @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="basic-default-fullname">User Name</label>
-                            <input type="text" name="name" class="form-control @error('name')
-                            is-invalid
-                            @enderror" id="basic-default-fullname" placeholder="enter user name">
-                            @error('name')
-                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="basic-default-fullname">User Email</label>
-                            <input type="email" name="email" class="form-control @error('email')
-                            is-invalid
-                            @enderror" id="basic-default-fullname" placeholder="enter user email">
-                            @error('email')
-                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="basic-default-fullname">User Password</label>
-                            <input type="password" name="password" class="form-control @error('password')
-                            is-invalid
-                            @enderror" id="basic-default-fullname" placeholder="enter user password">
-                            @error('password')
-                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <label class="form-label" for="short_description">Page Short Description</label>
+                                        <textarea name="short_description" class="form-control @error('short_description')
+                                        is-invalid
+                                        @enderror"" id="short_description" cols="30" rows="7"></textarea>
+                                        @error('short_description')
+                                                <span class="invalid-feedback"
+                                                    role="alert"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <label class="form-label" for="long_description">Page Long Description</label>
+                                        <textarea name="long_description" class="form-control @error('long_description')
+                                        is-invalid
+                                        @enderror"" id="long_description" cols="30" rows="7"></textarea>
+                                        @error('long_description')
+                                                <span class="invalid-feedback"
+                                                    role="alert"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <label class="form-label" for="meta_description">Page Meta Description</label>
+                                        <textarea name="meta_description" class="form-control @error('meta_description')
+                                        is-invalid
+                                        @enderror"" id="meta_description" cols="30" rows="7"></textarea>
+                                        @error('meta_description')
+                                                <span class="invalid-feedback"
+                                                    role="alert"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                    </div>
+                                </div></div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="page_image">Page Image Upload</label>
+                                    <input type="file"
+                                        class="dropify @error('page_image')
+                                    is-invalid
+                                    @enderror"
+                                        name="page_image">
+                                    @error('page_image')
+                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="title">Page Title</label>
+                                            <input type="text" name="title"
+                                                class="form-control @error('title')
+                                            is-invalid
+                                            @enderror"
+                                                id="title" placeholder="page title">
+                                            @error('title')
+                                                <span class="invalid-feedback"
+                                                    role="alert"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="mb-3">
+                                            <label class="form-label" for="slug">Page Slug</label>
+                                            <input type="text" name="slug"
+                                                class="form-control @error('slug')
+                                                                    is-invalid
+                                                                    @enderror"
+                                                id="slug" placeholder="page slug">
+                                            @error('slug')
+                                                <span class="invalid-feedback"
+                                                    role="alert"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="meta_title">Meta title</label>
+                                            <input type="text" name="meta_title"
+                                                class="form-control @error('meta_title')
+                                            is-invalid
+                                            @enderror"
+                                                id="meta_title" placeholder="meta title">
+                                            @error('meta_title')
+                                                <span class="invalid-feedback"
+                                                    role="alert"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="mb-3">
+                                            <label class="form-label" for="meta_keywords">Meta Keywords</label>
+                                            <input type="text" name="meta_keywords"
+                                                class="form-control @error('meta_keywords')
+                                                                    is-invalid
+                                                                    @enderror"
+                                                id="meta_keywords" placeholder="meta keywords">
+                                            @error('meta_keywords')
+                                                <span class="invalid-feedback"
+                                                    role="alert"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Save</button>
@@ -67,4 +147,10 @@
 @endsection
 
 @push('admin_script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"
+        integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $('.dropify').dropify();
+    </script>
 @endpush
