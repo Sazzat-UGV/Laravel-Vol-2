@@ -39,6 +39,13 @@ class PermissionSeeder extends Seeder
         'Edit Permission',
         'Delete Permission',
        ];
+
+       $adminPageBuilderPermissionArray=[
+        'Index Page',
+        'Create Page',
+        'Edit Page',
+        'Delete Page',
+       ];
        //Access Dashboard
        $adminDashboardModule=Module::where('module_name','Admin Dashboard')->select('id')->first();
        Permission::updateOrCreate([
@@ -72,6 +79,15 @@ class PermissionSeeder extends Seeder
             'module_id'=>$PermissionManagementModule->id,
             'permission_name'=>$adminPermissionPermissionArray[$i],
             'permission_slug'=>Str::slug($adminPermissionPermissionArray[$i]),
+           ]);
+       }
+       //Page Builder
+       $PageBuilderModule=Module::where('module_name','Page Builder')->select('id')->first();
+       for($i=0;$i<count($adminPageBuilderPermissionArray);$i++){
+           Permission::updateOrCreate([
+            'module_id'=>$PageBuilderModule->id,
+            'permission_name'=>$adminPageBuilderPermissionArray[$i],
+            'permission_slug'=>Str::slug($adminPageBuilderPermissionArray[$i]),
            ]);
        }
 

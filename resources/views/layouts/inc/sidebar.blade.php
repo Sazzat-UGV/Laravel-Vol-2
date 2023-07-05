@@ -159,5 +159,25 @@
         </ul>
       </li>
       @endcan
+      @can('index-page')
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bxs-book-open"></i>
+          <div data-i18n="Account Settings">Page Builder</div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="{{ route('page.index') }}" class="menu-link">
+              <div data-i18n="Account">List</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{ route('page.create') }}" class="menu-link">
+              <div data-i18n="Notifications">Create</div>
+            </a>
+          </li>
+        </ul>
+      </li>
+      @endcan
     </ul>
   </aside>
