@@ -6,6 +6,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css"
         integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style>
+            #container {
+                width: 1000px;
+                margin: 20px auto;
+            }
+            .ck-editor__editable[role="textbox"] {
+                /* editing area */
+                min-height: 200px;
+            }
+            .ck-content .image {
+                /* block images */
+                max-width: 80%;
+                margin: 20px auto;
+            }
+        </style>
 @endpush
 @section('content')
     <div class="row">
@@ -17,7 +32,7 @@
                                 class='bx bx-left-arrow-alt'></i> Back to Page List</a></small>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('page.store') }}" method="POST">
+                    <form action="{{ route('page.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -26,7 +41,7 @@
                                         <label class="form-label" for="short_description">Page Short Description</label>
                                         <textarea name="short_description" class="form-control @error('short_description')
                                         is-invalid
-                                        @enderror"" id="short_description" cols="30" rows="7"></textarea>
+                                        @enderror" id="short_description" cols="30" rows="7"></textarea>
                                         @error('short_description')
                                                 <span class="invalid-feedback"
                                                     role="alert"><strong>{{ $message }}</strong></span>
@@ -39,7 +54,7 @@
                                         <label class="form-label" for="long_description">Page Long Description</label>
                                         <textarea name="long_description" class="form-control @error('long_description')
                                         is-invalid
-                                        @enderror"" id="long_description" cols="30" rows="7"></textarea>
+                                        @enderror" id="long_description" cols="30" rows="7"></textarea>
                                         @error('long_description')
                                                 <span class="invalid-feedback"
                                                     role="alert"><strong>{{ $message }}</strong></span>
@@ -52,7 +67,7 @@
                                         <label class="form-label" for="meta_description">Page Meta Description</label>
                                         <textarea name="meta_description" class="form-control @error('meta_description')
                                         is-invalid
-                                        @enderror"" id="meta_description" cols="30" rows="7"></textarea>
+                                        @enderror" id="meta_description" cols="30" rows="7"></textarea>
                                         @error('meta_description')
                                                 <span class="invalid-feedback"
                                                     role="alert"><strong>{{ $message }}</strong></span>
@@ -90,7 +105,7 @@
                                     <div class="col-md-6">
 
                                         <div class="mb-3">
-                                            <label class="form-label" for="slug">Page Slug</label>
+                                            <label class="form-label" for="slug">Page Slug <small class="text-danger text-none">(slug value should have '-' example: 'about-us') *</small></label>
                                             <input type="text" name="slug"
                                                 class="form-control @error('slug')
                                                                     is-invalid
@@ -153,4 +168,33 @@
     <script>
         $('.dropify').dropify();
     </script>
+
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/38.1.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+                .create( document.querySelector( '#short_description' ) )
+                .then( editor => {
+                        console.log( editor );
+                } )
+                .catch( error => {
+                        console.error( error );
+                } );
+        ClassicEditor
+                .create( document.querySelector( '#long_description' ) )
+                .then( editor => {
+                        console.log( editor );
+                } )
+                .catch( error => {
+                        console.error( error );
+                } );
+        ClassicEditor
+                .create( document.querySelector( '#meta_description' ) )
+                .then( editor => {
+                        console.log( editor );
+                } )
+                .catch( error => {
+                        console.error( error );
+                } );
+</script>
 @endpush
