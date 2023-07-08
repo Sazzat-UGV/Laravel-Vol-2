@@ -118,6 +118,7 @@ class PageController extends Controller
 
 
     public function checkActive($page_id){
+        Gate::authorize('edit-page');
         $page=page::find($page_id);
         if($page->is_active == 1){
             $page->is_active=0;

@@ -6,6 +6,7 @@ use App\Http\Controllers\backend\PermissionController;
 use App\Http\Controllers\backend\ProfileController;
 use App\Http\Controllers\backend\RoleController;
 use App\Http\Controllers\backend\UserController;
+use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -25,6 +26,8 @@ use App\Http\Controllers\HomeController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('{page_slug}',[FrontendController::class,'index']);
 
 
 Auth::routes();
