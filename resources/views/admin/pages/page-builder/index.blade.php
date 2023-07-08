@@ -50,9 +50,12 @@
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
+                                                @can('edit-page')
                                                 <a class="dropdown-item" href="{{ route('page.edit', $page->id) }}"><i
-                                                        class="bx bx-edit-alt me-1"></i>
-                                                    Edit</a>
+                                                    class="bx bx-edit-alt me-1"></i>
+                                                Edit</a>
+                                                @endcan
+                                                @can('delete-page')
                                                 <form action="{{ route('page.destroy', $page->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -60,6 +63,7 @@
                                                             class="bx bx-trash me-1"></i>
                                                         Delete</button>
                                                 </form>
+                                                @endcan
                                             </div>
                                         </div>
                                     </td>
