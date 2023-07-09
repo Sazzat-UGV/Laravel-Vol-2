@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\BackUpcontroller;
 use App\Http\Controllers\backend\ModuleController;
 use App\Http\Controllers\backend\PageController;
 use App\Http\Controllers\backend\PermissionController;
@@ -27,7 +28,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('{page_slug}',[FrontendController::class,'index']);
+Route::get('custom/{page_slug}',[FrontendController::class,'index']);
 
 
 Auth::routes();
@@ -44,12 +45,11 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::resource('/role',RoleController::class);
     Route::resource('/user',UserController::class);
     Route::resource('/page',PageController::class);
+    Route::resource('/backup',BackUpcontroller::class)->only(['index','store','destroy']);
 
     //Active or Inactive Routes
     Route::get('check/user/is_active/{user_id}',[UserController::class,'checkActive'])->name('user.is_active.ajax');
     Route::get('check/page/is_active/{page_id}',[PageController::class,'checkActive'])->name('page.is_active.ajax');
-
-
 
     //Profile Management Route
     Route::get('update-profile',[ProfileController::class,'getUpdateProfile'])->name('getupdate.profile');
