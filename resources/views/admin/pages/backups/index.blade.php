@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    User Index
+    Backups Index
 @endsection
 
 @push('admin_style')
@@ -11,7 +11,7 @@
         <div class="col">
             <div class="card">
                 <div class="d-flex justify-content-between align-items-center my-3">
-                    <h5 class="card-header">User Index / List Page</h5>
+                    <h5 class="card-header">Backups Index / List Page</h5>
                     <a href="{{ route('user.create') }}" class="btn btn-primary me-4">Add New</a>
                 </div>
                 <div class="table-responsive text-nowrap p-3">
@@ -20,36 +20,19 @@
                             <tr>
                                 <th>#</th>
                                 <th>Last Updated</th>
-                                <th>User Role</th>
-                                <th>User Image</th>
-                                <th>User Name</th>
-                                <th>User Email</th>
-                                <th>Status</th>
+                                <th>File Name</th>
+                                <th>File Size</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            @forelse ($users as $index=>$user)
+                            @forelse ($backups as $index=>$backup)
                                 <tr>
                                     <td><strong>{{ $index + 1 }}</strong></td>
-                                    <td>{{ $user->updated_at->format('d-M-Y') }}</td>
-                                    <td>{{ $user->role->role_name }}</td>
-                                    <td>@if ($user->user_image)
-                                        <img src="{{ asset('uploads/profile_images') }}/{{ $user->user_image }}" alt class="w-px-40 h-auto rounded-circle" />
-                                        @else
-                                        <img src="{{ asset('admin/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle" />
-                                        @endif</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input toggle-class" type="checkbox" role="switch"
-                                                data-id="{{ $user->id }}" id="user-{{ $user->id }}"
-                                                {{ $user->is_active ? 'checked' : '' }}>
-
-                                        </div>
-                                    </td>
-                                    <td>
+                                    <td>{{ $backup['created_at'] }}</td>
+                                    <td>{{ $backup['file_name'] }}</td>
+                                    <td>{{ $backup['file_size'] }}</td>
+                                    {{-- <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                                 data-bs-toggle="dropdown">
@@ -68,7 +51,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                             @empty
                                 <tr>

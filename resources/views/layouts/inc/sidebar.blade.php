@@ -179,5 +179,23 @@
         </ul>
       </li>
       @endcan
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-data"></i>
+          <div data-i18n="Account Settings">Backup Management</div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="{{ route('backup.index') }}" class="menu-link">
+              <div data-i18n="Account">List</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="{{ route('backup.store') }}" class="menu-link">
+              <div data-i18n="Notifications">Create</div>
+            </a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </aside>
