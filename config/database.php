@@ -59,7 +59,8 @@ return [
             'strict' => true,
             'engine' => null,
             'dump' =>[
-                'dump_binary_path'=>'C:\xampp\mysql\bin', //only the path where xampp insatalled or mysqldump
+                'dump_binary_path'=>'C:\xampp\mysql\bin', //only the path of local machine where xampp insatalled or mysqldump
+                /*for server use this thing: 'dump_binary_path' => 'yourdomain/project-name/public-folder' */
                 'use_single_transaction',
                 'timeout'=>60*5, //5 minite timeout
             ],

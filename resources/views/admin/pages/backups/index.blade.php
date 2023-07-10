@@ -12,7 +12,11 @@
             <div class="card">
                 <div class="d-flex justify-content-between align-items-center my-3">
                     <h5 class="card-header">Backups Index / List Page</h5>
-                    <a href="{{ route('user.create') }}" class="btn btn-primary me-4">Add New</a>
+
+                    <button type="button" class="btn btn-primary me-4" onclick="event.preventDefault(); document.getElementById('new-backup-form').submit();">Create Backup</button>
+                    <form action="{{ route('backup.store') }}" method="post" class="d-none" id="new-backup-form">
+                    @csrf
+                </form>
                 </div>
                 <div class="table-responsive text-nowrap p-3">
                     <table class="table table-hover" id="myTable">
@@ -32,17 +36,17 @@
                                     <td>{{ $backup['created_at'] }}</td>
                                     <td>{{ $backup['file_name'] }}</td>
                                     <td>{{ $backup['file_size'] }}</td>
-                                    {{-- <td>
+                                    <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                                 data-bs-toggle="dropdown">
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="{{ route('user.edit', $user->id) }}"><i
-                                                        class="bx bx-edit-alt me-1"></i>
-                                                    Edit</a>
-                                                <form action="{{ route('user.destroy', $user->id) }}" method="POST">
+                                                <a class="dropdown-item" href="{{ route('backupDownload',  $backup['file_name']) }}"><i
+                                                        class="bx bx-download alt me-1"></i>
+                                                    Download</a>
+                                                <form action="{{ route('backup.destroy', $backup['file_name']) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="dropdown-item show_confirm" type="submit"><i
@@ -51,11 +55,11 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </td> --}}
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td>No user found yet!</td>
+                                    <td>No backup found yet!</td>
                                 </tr>
                             @endforelse
                         </tbody>

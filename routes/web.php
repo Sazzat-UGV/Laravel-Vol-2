@@ -47,6 +47,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::resource('/page',PageController::class);
     Route::resource('/backup',BackUpcontroller::class)->only(['index','store','destroy']);
 
+    Route::get('/backup/download/{file_name}',[BackUpcontroller::class,'download'])->name('backupDownload');
+
     //Active or Inactive Routes
     Route::get('check/user/is_active/{user_id}',[UserController::class,'checkActive'])->name('user.is_active.ajax');
     Route::get('check/page/is_active/{page_id}',[PageController::class,'checkActive'])->name('page.is_active.ajax');
