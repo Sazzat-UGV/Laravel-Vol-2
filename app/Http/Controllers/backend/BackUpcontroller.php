@@ -120,7 +120,7 @@ class BackUpcontroller extends Controller
                 fpassthru($stream);
             },200,[
                 "Content-Type"=>'.zip',
-                "Content-Length"=>$fs->size($file),
+                // "Content-Length"=>$fs->size($file),
                 "Content-disposition"=>"attachment; filename=\"".basename($file)."\"",
             ]);
 
